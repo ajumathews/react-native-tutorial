@@ -1,10 +1,20 @@
 import { Link } from "expo-router";
 import { View, Text, StyleSheet } from "react-native";
 
+import { Colors } from "../constants/Colors";
+import { useColorScheme } from "react-native";
+
 const About = () => {
+  const colorScheme = useColorScheme();
+  const theme = Colors[colorScheme] ?? Colors.light;
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>About Page</Text>
+    <View style={[styles.container, { backgroundColor: theme.background }]}>
+      <Text style={[styles.title, { color: theme.title }]}>About Page</Text>
+
+      <Link href="/" style={[styles.link, { color: theme.text }]}>
+        Home Page
+      </Link>
     </View>
   );
 };
@@ -21,5 +31,9 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 18
+  },
+  link: {
+    marginVertical: 10,
+    borderBottomWidth: 1
   }
 });

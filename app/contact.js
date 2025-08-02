@@ -5,6 +5,10 @@ const Contact = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Contact Page</Text>
+
+      <Link href="/" style={styles.link}>
+        Home Page
+      </Link>
     </View>
   );
 };
@@ -21,5 +25,9 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: "bold",
     fontSize: 18
+  },
+  link: {
+    marginVertical: 10,
+    borderBottomWidth: 1
   }
 });

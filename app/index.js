@@ -1,25 +1,31 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { Link } from "expo-router";
-import { Colors } from "../constants/Colors";
 
-import Logo from "../assets/img/logo_light.png";
+import ThemedView from "../components/ThemedView";
+import ThemedText from "../components/ThemedText";
+import ThemedLogo from "../components/ThemedLogo";
+import Spacer from "../components/Spacer";
 
 const Home = () => {
   return (
-    <View style={styles.container}>
-      <Image source={Logo} style={styles.img} />
+    <ThemedView style={styles.container}>
+      <ThemedLogo />
+      <Spacer />
 
-      <Text style={styles.title}>The Number 1</Text>
+      <ThemedText style={styles.title} title={true}>
+        The Number 1
+      </ThemedText>
 
-      <Text style={{ marginTop: 10, marginBottom: 30 }}>Reading List App</Text>
+      <ThemedText style={{ marginTop: 10, marginBottom: 30 }}>Reading List App</ThemedText>
 
       <Link href="/about" style={styles.link}>
-        About Page
+        <ThemedText>About Page</ThemedText>
       </Link>
+
       <Link href="/contact" style={styles.link}>
-        Contact Page
+        <ThemedText>Contact Page</ThemedText>
       </Link>
-    </View>
+    </ThemedView>
   );
 };
 
@@ -27,7 +33,6 @@ export default Home;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#e0dfe8",
     flex: 1,
     alignItems: "center",
     justifyContent: "center"

@@ -16,10 +16,8 @@ export default function RootLayout() {
           headerTintColor: theme.title
         }}
       >
-        {/* Groups */}
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-
-        {/* Individual Screens */}
+        <Stack.Screen name="(dashboard)" options={{ headerShown: false }} />
         <Stack.Screen name="index" options={{ title: "Home" }} />
       </Stack>
     </>

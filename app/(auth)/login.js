@@ -8,12 +8,16 @@ import Spacer from "../../components/Spacer";
 import { Colors } from "../../constants/Colors";
 import ThemedTextInput from "../../components/ThemedTextInput";
 import { useState } from "react";
+import { useUser } from "../../hooks/useUser";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const { user } = useUser;
+
   const handleSubmit = () => {
+    console.log(user);
     console.log("login form submitted", email, password);
   };
 

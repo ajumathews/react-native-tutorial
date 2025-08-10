@@ -1,7 +1,8 @@
 import { useUser } from "../../hooks/useUser";
 import { useRouter } from "expo-router";
 import { useEffect } from "react";
-import { ThemedLoader } from "../ThemedLoader";
+
+import ThemedLoader from "../ThemedLoader";
 
 const UserOnly = ({ children }) => {
   const { user, authChecked } = useUser();

@@ -1,24 +1,25 @@
-import { Keyboard, StyleSheet, Pressable, Text, TextInput, TouchableWithoutFeedback } from "react-native";
+import { StyleSheet, Text, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { Link } from "expo-router";
+import { useState } from "react";
+import { useUser } from "../../hooks/useUser";
 
 import ThemedView from "../../components/ThemedView";
 import ThemedText from "../../components/ThemedText";
-import ThemedButton from "../../components/ThemedButton";
 import Spacer from "../../components/Spacer";
-import { Colors } from "../../constants/Colors";
+import ThemedButton from "../../components/ThemedButton";
 import ThemedTextInput from "../../components/ThemedTextInput";
-import { useState } from "react";
-import { useUser } from "../../hooks/useUser";
+import { Colors } from "../../constants/Colors";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState();
 
-  const { login } = useUser;
+  const { user, login } = useUser();
 
   const handleSubmit = async () => {
     setError(null);
+
     try {
       await login(email, password);
     } catch (error) {
@@ -34,8 +35,12 @@ const Login = () => {
           Login to Your Account
         </ThemedText>
 
-        <ThemedTextInput style={{ width: "80%", marginBottom: 20 }} placeholder="Email" keyboardType="email-address" onChangeText={setEmail} value={email} />
-        <ThemedTextInput style={{ width: "80%", marginBottom: 20 }} placeholder="Password" onChangeText={setPassword} secureTextEntry />
+        {/* <TextInput placeholder="Email" /> */}
+
+        <Spacer />
+        <ThemedTextInput style={{ marginBottom: 20, width: "80%" }} placeholder="Email" value={email} onChangeText={setEmail} keyboardType="email-address" />
+
+        <ThemedTextInput style={{ marginBottom: 20, width: "80%" }} placeholder="Password" value={password} onChangeText={setPassword} secureTextEntry />
 
         <ThemedButton onPress={handleSubmit}>
           <Text style={{ color: "#f2f2f2" }}>Login</Text>
@@ -66,14 +71,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 30
   },
-  btn: {
-    backgroundColor: Colors.primary,
-    padding: 15,
-    borderRadius: 5
-  },
-  pressed: {
-    opacity: 0.8
-  },
   error: {
     color: Colors.warning,
     padding: 10,
@@ -81,6 +78,6 @@ const styles = StyleSheet.create({
     borderColor: Colors.warning,
     borderWidth: 1,
     borderRadius: 6,
-    margin: 10
+    marginHorizontal: 10
   }
 });

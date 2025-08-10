@@ -1,5 +1,27 @@
 import { Tabs } from "expo-router";
+import { useColorScheme } from "react-native";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 export default function Dashboard() {
-  return <Tabs />;
+  const colorscheme = useColorScheme();
+  const theme = Colors[colorscheme] ?? Colors.light;
+
+  return (
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: theme.navBackground,
+          paddingTop: 10,
+          height: 90
+        },
+        tabBarActiveTintColor: theme.iconColorFocussed,
+        tabBarInactiveTintColor: theme.iconColor
+      }}
+    >
+      <Tabs.Screen name="profile" options={{ title: "Profile" }} />
+      <Tabs.Screen name="books" options={{ title: "Books" }} />
+      <Tabs.Screen name="create" options={{ title: "Create" }} />
+    </Tabs>
+  );
 }
